@@ -17,6 +17,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private int id;
+    private int parentId;
     private int blogId;
     private String author;
     private String text;

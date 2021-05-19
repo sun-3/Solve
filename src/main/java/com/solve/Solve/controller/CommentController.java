@@ -21,4 +21,9 @@ public class CommentController {
     public List<Comment> getCommentsByBlogId(@PathVariable int blogId) {
         return service.getCommentsByBlogId(blogId);
     }
+
+    @GetMapping("/blogs/{blogId}/comments/{parentId}")
+    public List<Comment> getNestedCommentsByParentId(@PathVariable int parentId) {
+        return service.getNestedCommentsByParentId(parentId);
+    }
 }

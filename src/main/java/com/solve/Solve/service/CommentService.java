@@ -19,4 +19,8 @@ public class CommentService {
     public List<Comment> getCommentsByBlogId(int blogId) {
         return repository.findByBlogId(blogId);
     }
+
+    public List<Comment> getNestedCommentsByParentId(int parentId) {
+        return repository.findByParentId(parentId);
+    }
 }
