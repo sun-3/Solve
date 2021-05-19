@@ -13,12 +13,12 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Blog {
+public class Comment {
     @Id
     @GeneratedValue
     private int id;
-    private String[] authors;
-    private String title;
+    private int blogId;
+    private String author;
     private String text;
     private Date postedAt;
 }
