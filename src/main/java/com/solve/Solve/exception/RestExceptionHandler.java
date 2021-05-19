@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
+
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidDataException.class)
@@ -21,6 +23,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<ErrorMessage> handleIncompleteJsonException(IncompleteJsonException exception) {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
         return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    protected final ResponseEntity<ErrorMessage> handleEntityNotFoundException(EntityNotFoundException ex) {
+        ErrorMessage exceptionMessage = new ErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(exceptionMessage, exceptionMessage.getStatus());
     }
 
     @Override

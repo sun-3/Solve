@@ -8,6 +8,7 @@ import com.solve.Solve.model.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class BlogService {
     }
 
     public Blog getBlogById(int id) {
-        return repository.findById(id).orElseThrow(null);
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(Errors.ERR_ENTITY_NOT_FOUND_BLOG_PREFIX + id + Errors.ERR_ENTITY_NOT_FOUND_BLOG_SUFFIX));
     }
 
     public Blog updateBlog(Blog blog) {
@@ -42,7 +43,7 @@ public class BlogService {
         }
 
         if (isValidBlog(blog)) {
-            Blog existing = repository.getOne(blog.getId());
+            Blog existing = repository.findById(blog.getId()).orElseThrow(() -> new EntityNotFoundException(Errors.ERR_ENTITY_NOT_FOUND_BLOG_PREFIX + blog.getId() + Errors.ERR_ENTITY_NOT_FOUND_BLOG_SUFFIX));
             existing.setAuthors(blog.getAuthors());
             existing.setTitle(blog.getTitle());
             existing.setText(blog.getText());
