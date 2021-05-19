@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -28,9 +29,11 @@ public class Comment {
     private int blogId;
 
     @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_AUTHOR)
+    @Size(min = 1, message = Errors.ERR_INCOMPLETE_JSON_COMMENT_AUTHOR)
     private String author;
 
     @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_TEXT)
+    @Size(min = 1, message = Errors.ERR_INCOMPLETE_JSON_COMMENT_TEXT)
     private String text;
 
     @NotNull
