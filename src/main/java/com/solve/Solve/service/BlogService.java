@@ -2,12 +2,13 @@ package com.solve.Solve.service;
 
 import com.solve.Solve.dao.BlogRepository;
 import com.solve.Solve.exception.Errors;
-import com.solve.Solve.model.Blog;
 import com.solve.Solve.exception.IncompleteJsonException;
 import com.solve.Solve.exception.InvalidDataException;
+import com.solve.Solve.model.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,9 @@ public class BlogService {
     private BlogRepository repository;
 
     public Blog saveBlog(Blog blog) {
+        if (blog.getPostedAt() == null) {
+            blog.setPostedAt(new Date(System.currentTimeMillis()));
+        }
 
         if (isValidBlog(blog)) {
             return repository.save(blog);
@@ -33,6 +37,10 @@ public class BlogService {
     }
 
     public Blog updateBlog(Blog blog) {
+        if (blog.getPostedAt() == null) {
+            blog.setPostedAt(new Date(System.currentTimeMillis()));
+        }
+
         if (isValidBlog(blog)) {
             Blog existing = repository.getOne(blog.getId());
             existing.setAuthors(blog.getAuthors());

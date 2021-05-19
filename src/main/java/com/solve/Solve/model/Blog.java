@@ -35,6 +35,5 @@ public class Blog {
     @Size(min = 1, message = Errors.ERR_INCOMPLETE_JSON_BLOG_TEXT)
     private String text;
 
-    @NotNull
     private Date postedAt;
 }

@@ -36,6 +36,5 @@ public class Comment {
     @Size(min = 1, message = Errors.ERR_INCOMPLETE_JSON_COMMENT_TEXT)
     private String text;
 
-    @NotNull
     private Date postedAt;
 }
