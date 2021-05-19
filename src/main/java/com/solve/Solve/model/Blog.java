@@ -21,7 +21,6 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = Errors.ERR_INCOMPLETE_JSON_BLOG_ID)
-    @Size(min = 1, message = Errors.ERR_INCOMPLETE_JSON_BLOG_ID)
     private int id;
 
     @NotNull(message = Errors.ERR_INCOMPLETE_JSON_BLOG_AUTHOR)
