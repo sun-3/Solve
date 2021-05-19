@@ -1,5 +1,6 @@
 package com.solve.Solve.model;
 
+import com.solve.Solve.exception.Errors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,18 +19,18 @@ import java.util.Date;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
+    @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_ID)
     private int id;
 
     private int parentId;
 
-    @NotNull
+    @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_BLOG_ID)
     private int blogId;
 
-    @NotNull
+    @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_AUTHOR)
     private String author;
 
-    @NotNull
+    @NotNull(message = Errors.ERR_INCOMPLETE_JSON_COMMENT_TEXT)
     private String text;
 
     @NotNull
