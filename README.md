@@ -6,6 +6,7 @@
   <h3 align="center">Solve</h3>
   <p align="center">
     Blog REST API using Spring Boot, H2 Database and Gradle<br><br>
+    <img src="https://forthebadge.com/images/badges/made-with-java.svg" />
   </p>
   <h3>Features</h3>
   <ul>
