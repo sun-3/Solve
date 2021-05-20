@@ -55,8 +55,12 @@ public class BlogService {
     }
 
     public String deleteBlog(int id) {
-        repository.deleteById(id);
-        return "Blog deleted";
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return "Blog deleted";
+        } else {
+            throw new EntityNotFoundException(Errors.ERR_ENTITY_NOT_FOUND_BLOG_PREFIX + id + Errors.ERR_ENTITY_NOT_FOUND_BLOG_SUFFIX)
+        }
     }
 
     private boolean isValidBlog(Blog blog) {
