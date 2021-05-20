@@ -16,8 +16,8 @@ public class CommentController {
     private CommentService service;
 
     @PostMapping("/blogs/{blogId}/comments")
-    public Comment addComment(@RequestBody @Valid Comment comment) {
-        return service.saveComment(comment);
+    public Comment addComment(@PathVariable int blogId, @RequestBody @Valid Comment comment) {
+        return service.saveComment(blogId, comment);
     }
 
     @GetMapping("/blogs/{blogId}/comments")

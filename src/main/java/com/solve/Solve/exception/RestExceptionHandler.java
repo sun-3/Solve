@@ -14,25 +14,37 @@ import javax.persistence.EntityNotFoundException;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidDataException.class)
-    public final ResponseEntity<ErrorMessage> handleInvalidDataException(InvalidDataException exception) {
+    public ResponseEntity<ErrorMessage> handleInvalidDataException(InvalidDataException exception) {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
         return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
     }
 
     @ExceptionHandler(IncompleteJsonException.class)
-    public final ResponseEntity<ErrorMessage> handleIncompleteJsonException(IncompleteJsonException exception) {
+    public ResponseEntity<ErrorMessage> handleIncompleteJsonException(IncompleteJsonException exception) {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
         return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    protected final ResponseEntity<ErrorMessage> handleEntityNotFoundException(EntityNotFoundException ex) {
-        ErrorMessage exceptionMessage = new ErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
-        return new ResponseEntity<>(exceptionMessage, exceptionMessage.getStatus());
+    public ResponseEntity<ErrorMessage> handleEntityNotFoundException(EntityNotFoundException exception) {
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
+    }
+
+    @ExceptionHandler(IdMismatchException.class)
+    public ResponseEntity<ErrorMessage> handleIdMismatchException(IdMismatchException exception) {
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+        return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorMessage> handleException(Exception exception) {
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+        return new ResponseEntity<>(errorMessage, errorMessage.getStatus());
     }
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String errorMessage = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
         ErrorMessage exceptionMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, errorMessage);
         return new ResponseEntity<>(exceptionMessage, exceptionMessage.getStatus());
