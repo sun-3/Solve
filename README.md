@@ -28,7 +28,7 @@
   <h4>Validation and Exception Handling</h4>
   For validation Spring Boot and JPA proved to be of great help, making null checks and implementing custom error messages a breeze. For exception handling, I prefered to use a custom implementation for returning easy-to-read errors.
   <h3>REST APIs</h3>
-  If you are using Postman, you can download the Postman Collection <a href="https://www.getpostman.com/collections/7b7b3cc6bf14695d7b2f">here</a> or import the collection from the repository.
+  If you are using Postman, you can download the Postman Collection <a href="https://www.getpostman.com/collections/739d7620c08d26cd3316">here</a> or import the collection from the repository.
   <h4>Blog</h4>
   <table>
   <tr>

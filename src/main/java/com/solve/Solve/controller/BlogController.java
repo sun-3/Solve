@@ -30,9 +30,9 @@ public class BlogController {
         return service.getBlogById(id);
     }
 
-    @PutMapping("/blogs")
-    public Blog updateBlog(@RequestBody @Valid Blog blog) {
-        return service.updateBlog(blog);
+    @PutMapping("/blogs/{id}")
+    public Blog updateBlog(@PathVariable int id, @RequestBody @Valid Blog blog) {
+        return service.updateBlog(id, blog);
     }
 
     @DeleteMapping("/blogs/{id}")

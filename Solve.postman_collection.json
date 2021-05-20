@@ -323,13 +323,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/blogs",
+					"raw": "localhost:8080/blogs/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"blogs"
+						"blogs",
+						"1"
 					]
 				}
 			},
@@ -349,13 +350,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/blogs",
+							"raw": "localhost:8080/blogs/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"blogs"
+								"blogs",
+								"1"
 							]
 						}
 					},
@@ -402,13 +404,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/blogs",
+							"raw": "localhost:8080/blogs/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"blogs"
+								"blogs",
+								"1"
 							]
 						}
 					},
@@ -754,9 +757,29 @@
 		{
 			"name": "Add a sub-comment",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"blogId\": 1,\n    \"parentId\": 1,\n    \"author\": \"shldhll\",\n    \"text\": \"This is a nested comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/blogs/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogs",
+						"1",
+						"comments"
+					]
+				}
 			},
 			"response": [
 				{

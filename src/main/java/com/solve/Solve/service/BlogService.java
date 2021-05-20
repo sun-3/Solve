@@ -37,12 +37,12 @@ public class BlogService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(Errors.ERR_ENTITY_NOT_FOUND_BLOG_PREFIX + id + Errors.ERR_ENTITY_NOT_FOUND_BLOG_SUFFIX));
     }
 
-    public Blog updateBlog(Blog blog) {
+    public Blog updateBlog(int id, Blog blog) {
         if (blog.getPostedAt() == null) {
             blog.setPostedAt(new Date(System.currentTimeMillis()));
         }
 
-        if (isValidBlog(blog)) {
+        if (isValidBlog(blog) && id == blog.getId()) {
             Blog existing = repository.findById(blog.getId()).orElseThrow(() -> new EntityNotFoundException(Errors.ERR_ENTITY_NOT_FOUND_BLOG_PREFIX + blog.getId() + Errors.ERR_ENTITY_NOT_FOUND_BLOG_SUFFIX));
             existing.setAuthors(blog.getAuthors());
             existing.setTitle(blog.getTitle());
