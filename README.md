@@ -18,10 +18,10 @@
   <ol>
   <li>Clone the repository <code>git clone https://github.com/shldhll/Solve.git</code></li>
   <li>Open project and sync gradle</li>
-  <li>Build and run the application using <code>gradle bootRun</code> command</li>
+  <li>Build and run the application using <code>gradlew bootRun</code> command</li>
   </ol>
   <h3>Details</h3>
-  <h4>Why SQL Database</h4>
+  <h4>SQL Database</h4>
   I have used an SQL Database (H2 Database), here the relationship and structure between a blog and a comment is clearly defined. It is easy to see that both of the models are not very dynamic in nature and considering their dependency a relational database is a good choice for this project.
   <h4>Nesting of Comments</h4>
   A separate field <code>parentId</code> is being used for implementing the nesting of comments. In my opinion, this is the best approach as this allows for lazy-loading/pagination which can lead to great efficiency.
@@ -60,6 +60,29 @@
     <td>PUT</td>
     <td>/blogs/{id}</td>
     <td>Update the blog with given ID</td>
+  </tr>
+  </table>
+  <h4>Comment</h4>
+  <table>
+  <tr>
+    <th>METHOD</th>
+    <th>REQUEST URL</th>
+    <th>DETAILS</th>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/blogs/{blogId}/comments</td>
+    <td>Add a comment</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/blogs/{blogId}/comments</td>
+    <td>Get all comments for a blog</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/blogs/{blogId}/comments/{id}</td>
+    <td>Get all comments for a comment</td>
   </tr>
   </table>
 </p>
